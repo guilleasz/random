@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <link rel="stylesheet" href="stylesheet.css" </head>
+
+    <body>
+        <div id=instructions>
+            Escribe la frase lo mas rapido posible una vez que la hayas completado oprime cualquier tecla para ver tu resultado!<button id=jugar>Jugar!</button>
+        </div>
+        <p>
+            <span id=palabra1>Hola </span>
+            <span id=palabra2>como </span>
+            <span id=palabra3>estas </span>
+            <span id=palabra4>estamos </span>
+            <span id=palabra5>jugando </span> <span id=palabra6>la </span>
+            <span id=palabra7>primera </span>
+            <span id=palabra8>version </span>
+            <span id=palabra9>de </span>
+            <span id=palabra10>type </span>
+            <span id=palabra11>racer </span>
+            <span id=palabra12>de </span>
+            <span id=palabra13>plataforma5 </span>
+        </p>
+        <input></input>
+        <div class=hidden></div>
+        <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+        <script>
+            $("#jugar").click(function(){
+            $("#instructions").hide() 
+            $("p").show()
+            $("input").show()
+            
+         var hora0= new Date()
+            var n = 1
+            $("input").on('keydown', function(e) {
+                $(".hidden").show()
+                $(".hidden").append(String.fromCharCode(e.keyCode))
+                if (e.keyCode === 8) {
+                    var original = $(".hidden").text(), oracion= original.slice(0, - 2)
+                    
+                    $(".hidden").text(oracion)
+                }
+                var verde = function() {
+                    $("#palabra" + n).addClass("highlighted")
+                }
+                verde()
+                if (n < 14) {
+                    if ($(".hidden").text() === $("#palabra" + n).text().toUpperCase()) {
+                        $("#palabra" + n).removeClass("highlighted")
+                        n++
+                        $(".hidden").text("")
+                        verde()
+                        $("input").val("")
+                    }
+
+                }else{
+                    $("p").hide()
+                    $("input").hide()
+                    var hora1 = new Date()
+                    var tiempo = Math.floor((hora1-hora0)/1000)
+                    $("body").append("<div>HAS GANADO! Lo has hecho en "+tiempo+" segundos</div>")
+                    }
+            })
+            })
+
+        </script>
+    </body>
+
+</html>

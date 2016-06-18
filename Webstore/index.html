@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Webstore Hackaton</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Webstore Hackaton</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
+          <ul id=productos-nav class="dropdown-menu">
+
+          </ul>
+        </li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input id=inputSearch type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default" id=search>Submit</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="identi" id=vertodo href="#">Ver Todo</a></li>
+            <li><a href="#" class="identi" id=agregar>Agregar Productos</a></li>
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+      <div id=contenido class="row">
+          <div class="col-sm-6 col-md-3">
+            <div class="producto">
+              <div class="img">
+                  <img class=img-thumbnail src="https://upload.wikimedia.org/wikipedia/en/f/f1/Tuareg_novel_-_bookcover.jpg" alt="" />
+              </div>
+
+              <div class="name">
+                <strong>Nombre:</strong><span class=info>Tuareg</span>
+              </div>
+              <div class="category">
+                  <strong>Categoria:</strong><span class=info>Novelas</span>
+              </div>
+              <div class="price">
+                  <strong>Precio:</strong><span class=info>$225</span>
+              </div>
+              <div class="punto_de_venta">
+                  <strong>Punto de Venta:</strong><span class=info>El ateneo</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="producto">
+              <div class="img">
+                  <img class=img-thumbnail src="http://content.cuspide.com/getcover.ashx?ISBN=9789500738651&size=3&coverNumber=1&id_com=1113" alt="" />
+              </div>
+
+              <div class="name">
+                <strong>Nombre:</strong><span class=info>Cuentos Completos</span>
+              </div>
+              <div class="category">
+                  <strong>Categoria:</strong><span class=info>Cuentos</span>
+              </div>
+              <div class="price">
+                  <strong>Precio:</strong><span class=info>$500</span>
+              </div>
+              <div class="punto_de_venta">
+                  <strong>Punto de Venta:</strong><span class=info>Gral. Las heras</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="producto">
+              <div class="img">
+                  <img class=img-thumbnail src="http://lengua.laguia2000.com/wp-content/uploads/2014/03/mil.jpg" alt="" />
+              </div>
+
+              <div class="name">
+                <strong>Nombre:</strong><span class=info>Mil y una noches</span>
+              </div>
+              <div class="category">
+                  <strong>Categoria:</strong><span class=info>Cuentos</span>
+              </div>
+              <div class="price">
+                  <strong>Precio:</strong><span class=info>1500$</span>
+              </div>
+              <div class="punto_de_venta">
+                  <strong>Punto de Venta:</strong><span class=info>La calle</span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="formulario">
+        <p id=alert>No ha completado todos los campos</p>
+        Nuevo producto
+        <p>
+            <select name="Tipo" id=tipo>
+                <optgroup label="Tipo de Producto">
+                  <option value=libros id=libros>Libros</option>
+                  <option value=discos id=discos>Discos</option>
+                 <option value=otro id=otro>Otro</option>
+                </optgroup>
+            </select>
+            <span id=nuevo>
+                Agregar nuevo tipo de producto: <input class="input" type="text" id="newone" value="-" placeholder="Ej; Libro, LCD, Laptop">
+            </span>
+        </p>
+        <p>
+            Titulo:
+            <input class="input" type=text id=titulo></input>
+        </p>
+        <p>
+            Categoria:
+            <input class="input" type=text id=categoria></input>
+        </p>
+        <p>
+            Precio:
+            <input class="input" type=text id=precio></input>
+        </p>
+        <p>
+            Puntos de venta(Dividir por comas Ej: Yenny, Amazon, Musimundo):
+            <input class="input" type=text id=puntos></input>
+        </p>
+        <p>
+            Imagen url:
+            <input class="input" type=text id=imagen></input>
+        </p>
+        <button id="submit">Publicar!</button>
+    </form>
+  </div>
+
+
+      </div>
+    </div>
+
+    <nav id=footer class="footer absolute">
+        ©Plataforma5 2016
+    </footer>
+
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src=script.js></script>
+  </body>
+</html>

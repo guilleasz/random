@@ -1,0 +1,23 @@
+body{
+  background-image: url("bikini-bottom.jpg");
+  background-size: cover
+}
+.chiquito {
+    width: 200px;
+    height: auto;
+    position: fixed
+  }
+
+  #hola {
+    position: fixed
+  }
+
+  .container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .jumbotron{
+    background-color: yellow;
+  }

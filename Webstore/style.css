@@ -1,0 +1,64 @@
+body{
+  margin: 0;
+}
+
+.identi{
+  text-transform: capitalize;
+}
+.footer{
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: black;
+  margin-top: 20px
+}
+
+#alert{
+  color: red;
+  display: none
+}
+.absolute{
+  position: absolute;
+}
+.relative{
+  position: relative;
+}
+
+
+
+.producto{
+  margin-top: 30px;
+  border: 1px solid silver;
+  width: 90%;
+  height: 400px;
+  display: inline-block;
+  left: 50%;
+  padding: 10px;
+}
+.producto div:not(.img){
+  margin: 10px auto;
+  text-align: left
+}
+.img{
+  height: 200px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.img img{
+  height: 100%;
+  width: auto
+}
+#footer{
+  padding: 10px;
+  text-align: center;
+  color: white
+}
+.formulario, #nuevo{
+  display: none
+}
+#search{
+  outline: none
+}

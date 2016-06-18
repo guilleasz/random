@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        .border {
+            border: 10px solid red;
+        }
+        
+        #hide {
+            display: none
+        }
+
+    </style>
+    <script src="underscore.js"></script>
+</head>
+
+<body>
+    <button id=vertodo>Ver todo</button>
+    <button id=verfavoritos>Ver Favoritos</button>
+    <input type="text" id=searchcontent>
+    <button id=search>Search!</button>
+    <div class=container>
+        <div class="row">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script>
+        var i = -1
+        var pics = []
+        var favpics = []
+        var n
+        var searches = []
+        var get_pictures = function(searchTerm) {
+            $.ajax({
+                url: "https://api.imgur.com/3/gallery/search?q=" + encodeURI(searchTerm),
+                headers: {
+                    "Authorization": "Client-ID e3776adbe9c5fb9"
+                },
+                success: function(response) {
+                    $(".row").empty()
+                    n = 0
+                    pics.push(response.data)
+                    var postpic = function(arr) {
+                        if (arr["favorite"] !== true) {
+                            $(".row").append("<div class='col-lg-3 col-md-4 col-xs-6 thumb' id=caja" + n + "><a id=" + n + " class='thumbnail'><img src='" + arr.link + "' class='img-responsive'></a></div>")
+                            $("#" + n).attr("href", arr.link)
+                            var refe = pics[i][n]
+                            var favboton = $("<button>")
+                            var unfavboton = $("<button>")
+                            favboton.click(function() {
+                                favboton.parent().addClass('border')
+                                arr.favorite = true
+                                favpics.push(refe)
+                                favboton.hide()
+                                unfavboton.show()
+                            })
+                            unfavboton.click(function() {
+                                favboton.parent().removeClass("border")
+                                favpics.splice(_.indexOf(favpics, refe), 1)
+                                favboton.show()
+                                unfavboton.hide()
+                                arr.favorite = false
+
+                            })
+                            unfavboton.text("Remove Fav")
+                            $("#caja" + n).append(unfavboton)
+                            unfavboton.attr("id", "hide")
+                            favboton.text("FAV!")
+                            $("#caja" + n).append(favboton)
+                            n++
+
+                        } else {
+                            $(".row").append("<div class='col-lg-3 col-md-4 col-xs-6 thumb border' id=caja" + n + "><a id=" + n + " class='thumbnail'><img src='" + arr.link + "' class='img-responsive'></a></div>")
+                            $("#" + n).attr("href", arr.link)
+                            var refe = pics[i][n]
+                            var favboton = $("<button>")
+                            var unfavboton = $("<button>")
+                            favboton.click(function() {
+                                favboton.parent().addClass('border')
+                                arr.favorite = true
+                                favpics.push(refe)
+                                favboton.hide()
+                                unfavboton.show()
+                            })
+                            unfavboton.click(function() {
+                                favboton.parent().removeClass("border")
+                                favpics.splice(_.indexOf(favpics, refe), 1)
+                                favboton.show()
+                                unfavboton.hide()
+                                arr.favorite = false
+
+                            })
+                            unfavboton.text("Remove Fav")
+                            $("#caja" + n).append(unfavboton)
+                            favboton.attr("id", "hide")
+                            favboton.text("FAV!")
+                            $("#caja" + n).append(favboton)
+                            n++
+
+                        }
+                    }
+                    $("#vertodo").click(function() {
+                        $(".row").empty()
+                        n = 0
+                        pics[i].forEach(postpic)
+                    })
+                    pics[i].forEach(postpic)
+
+                }
+            })
+
+        }
+
+        $("#search").click(function() {
+            if (_.some(searches, function(arr) {
+                    return arr === $("#searchcontent").val()
+                }) === true) {
+                var po = _.indexOf(searches, $("#searchcontent").val())
+                $(".row").empty()
+                n = 0
+                var postpic = function(arr) {
+                    if (arr["favorite"] !== true) {
+                        $(".row").append("<div class='col-lg-3 col-md-4 col-xs-6 thumb' id=caja" + n + "><a id=" + n + " class='thumbnail'><img src='" + arr.link + "' class='img-responsive'></a></div>")
+                        $("#" + n).attr("href", arr.link)
+                        var refe = pics[po][n]
+                        var favboton = $("<button>")
+                        var unfavboton = $("<button>")
+                        favboton.click(function() {
+                            favboton.parent().addClass('border')
+                            arr.favorite = true
+                            favpics.push(refe)
+                            favboton.hide()
+                            unfavboton.show()
+
+                        })
+                        unfavboton.click(function() {
+                            favboton.parent().removeClass("border")
+                            favpics.splice(_.indexOf(favpics, refe), 1)
+                            favboton.show()
+                            unfavboton.hide()
+
+                        })
+                        unfavboton.text("Remove Fav")
+                        $("#caja" + n).append(unfavboton)
+                        unfavboton.attr("id", "hide")
+                        favboton.text("FAV!")
+                        $("#caja" + n).append(favboton)
+                        n++
+
+                    } else {
+                        $(".row").append("<div class='col-lg-3 col-md-4 col-xs-6 thumb border' id=caja" + n + "><a id=" + n + " class='thumbnail'><img src='" + arr.link + "' class='img-responsive'></a></div>")
+                        $("#" + n).attr("href", arr.link)
+                        var refe = pics[i][n]
+                        var favboton = $("<button>")
+                        var unfavboton = $("<button>")
+                        favboton.click(function() {
+                            favboton.parent().addClass('border')
+                            arr.favorite = true
+                            favpics.push(refe)
+                            favboton.hide()
+                            unfavboton.show()
+
+
+                        })
+                        unfavboton.click(function() {
+                            favboton.parent().removeClass("border")
+                            favpics.splice(_.indexOf(favpics, refe), 1)
+                            favboton.show()
+                            unfavboton.hide()
+                            arr.favorite = false
+
+                        })
+                        unfavboton.text("Remove Fav")
+                        $("#caja" + n).append(unfavboton)
+                        favboton.attr("id", "hide")
+                        favboton.text("FAV!")
+                        $("#caja" + n).append(favboton)
+                        n++
+
+                    }
+                }
+                $("#vertodo").click(function() {
+                    $(".row").empty()
+                    n = 0
+                    pics[po].forEach(postpic)
+                })
+                pics[po].forEach(postpic)
+
+            } else {
+                i++
+                get_pictures($("#searchcontent").val())
+                searches.push($("#searchcontent").val())
+            }
+        })
+
+        $("#verfavoritos").click(function() {
+            $(".row").empty()
+            n = 0
+            var postfavs = function(arr) {
+                var findfavs = function(key) {
+                    if (key.favorite === true) {
+                        $(".row").append("<div class='col-lg-3 col-md-4 col-xs-6 thumb' id=caja" + n + "><a id=" + n + " class='thumbnail'><img src='" + key.link + "' class='img-responsive'></a></div>")
+                        $("#" + n).attr("href", key.link)
+                        var refe = key
+                        var unfavboton = $("<button>")
+                        unfavboton.click(function() {
+                            favpics.splice(_.indexOf(favpics, refe), 1)
+                            $(".row").empty()
+                            n = 0
+                            pics.forEach(postfavs)
+                            key.favorite = false
+                        })
+                        unfavboton.text("Remove Fav")
+                        $("#caja" + n).append(unfavboton)
+                        n++
+                    }
+                }
+                arr.forEach(findfavs)
+            }
+            pics.forEach(postfavs)
+        })
+
+    </script>
+</body>
+
+</html>

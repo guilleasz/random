@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <title>BOB ESPONJA</title>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+  <div class=container>
+    <div class="jumbotron">
+      <h1 id=tiempo></h1>
+      <p class="lead">Quieres perder el tiempo con Bob Esponja?</p>
+      <p><a class="btn btn-lg btn-success" href="#" role="button">Empezar</a></p>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+  <script>
+    var new_div = "<div id=container></div>",
+      new_img = "<img>",
+      h = window.innerHeight,
+      w = window.innerWidth,
+      ti = 0
+    $("body").append(new_div)
+    $("#container").append(new_img)
+    $("img").attr("src", "spongebob.gif")
+    $("img").addClass("chiquito")
+    $("img").hide()
+    $("#hola").hide()
+    $("#hola").fadeIn(2000).delay(2000).fadeOut(2000)
+    $(".btn").click(function() {
+      var bobesponja = function() {
+        var n = 0
+        $(".jumbotron").hide()
+        $('.jumbotron').delay(10000).fadeIn()
+        $('img').show()
+        $('img').delay(10000).fadeOut()
+        while (n < 40) {
+          setTimeout(function() {
+            $(".chiquito").css("top", Math.random() * (h - 200)).css("left", Math.random() * (w - 200))
+          }, (250*n));
+          n++
+        }
+        ti++
+        $("#tiempo").text("Has perdido " + ti * 10 + " segundos con Bob")
+        $(".lead").text("Quieres seguir perdiendo el tiempo con Bob Esponja?")
+        $(".btn").text("Seguir")
+      }
+      bobesponja()
+    })
+  </script>
+
+</body>
+
+</html>

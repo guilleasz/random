@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id=container>
+        <input placeholder="Search City..."><button>SEARCH</button>
+        <p>Temperatura actual: <span id=temp></span></p>
+        <p>Temperatura minima: <span id= mintemp></span></p>
+        <p>Temperatura maxima: <span id=tempmax></span></p>
+        <p>Descripcion: <span id=description></span></p>
+        <p>Viento: <span id=wind></span></p>
+        <p>Sol: <span id=sunris></span></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+    <script>
+        var message = function(){
+            $('#temp').text("Cargando...")
+            $('#mintemp').text("Cargando...")
+            $('#tempmax').text("Cargando...")
+            $('#description').text("Cargando...")
+            $('#wind').text("Cargando...")
+            $("#sunris").text("Cargando...")
+        }
+        var to_be_run_on_server_response_weather = function(data) {
+            $('#temp').text(data.main.temp)
+            $('#mintemp').text(data.main.temp_min)
+            $('#tempmax').text(data.main.temp_max)
+            $('#description').text(data.weather[0].description)
+            $('#wind').text(data.wind.speed)
+            $("#sunris").text(new Date(data.sys.sunrise * 1000))
+        }
+        $("button").click(function(){           $.get('http://api.openweathermap.org/data/2.5/weather?q='+ encodeURI($("input").val()) +'&appid=95176c8edea30e33338e0eaddd53a916').success(to_be_run_on_server_response_weather)
+        message()
+        })
+    </script>
+</body>
+
+</html>
