@@ -28,18 +28,18 @@
         <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
         <script>
             $("#jugar").click(function(){
-            $("#instructions").hide() 
+            $("#instructions").hide()
             $("p").show()
-            $("input").show()
-            
+            $("input").show().focus()
+
          var hora0= new Date()
             var n = 1
-            $("input").on('keydown', function(e) {
+            $("input").on('keyup', function(e) {
                 $(".hidden").show()
                 $(".hidden").append(String.fromCharCode(e.keyCode))
                 if (e.keyCode === 8) {
                     var original = $(".hidden").text(), oracion= original.slice(0, - 2)
-                    
+
                     $(".hidden").text(oracion)
                 }
                 var verde = function() {
