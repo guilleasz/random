@@ -174,7 +174,7 @@ function coincidencia(producto){
   return false
 }
 
-$("#inputSearch").on("change keyup paste",function(event){
+$("#inputSearch").on("change keyup",function(event){
 
     $("#search").click()
 
