@@ -1,0 +1,19 @@
+.palabraActual{
+  background-color: green;
+  color: white;
+  text-decoration: underline;
+}
+#congrats{
+font-size: 60px;
+color: green;
+}
+#userInput{
+  width: 300px
+}
+.error{
+  background-color: red;
+}
+#mensaje{
+  color: red;
+  display: none;
+}
