@@ -43,7 +43,7 @@ var productos = {
 var num=0
 
 
-var add_to_page = function(producto){
+function add_to_page(producto){
     $("#contenido").append('<div class="col-sm-6 col-md-3">\
         <div id=item'+num+' class="producto">\
           <div class="img">\
@@ -59,30 +59,29 @@ var add_to_page = function(producto){
   num++
   }
 
-var create_navbar=function(){
+function create_navbar(){
   $("#productos-nav").empty()
 for(var key in productos){
   $("#productos-nav").append('<li><a class=identi id='+key+' href="#">'+key+"</a></li>")
-  $(".identi").click(function(){
-    $(".formulario").hide()
-    $("li").removeClass("active")
-    $(this).parent().addClass("active")
-    $("#contenido").empty()
-      num=0
-    if($(this).attr("id")==="vertodo"){
-      for (var key in productos) {
-        productos[key].forEach(add_to_page)
-    }
-  }else if($(this).attr("id")==="agregar"){
-    $(".formulario").show()
-  }else{
-  productos[$(this).attr("id")].forEach(add_to_page)
+}
+}
+
+$(".nav").on("click", ".identi", function(){
+  $(".formulario").hide()
+  $("li").removeClass("active")
+  $(this).parent().addClass("active")
+  $("#contenido").empty()
+    num=0
+  if($(this).attr("id")==="vertodo"){
+    for (var key in productos) {
+      productos[key].forEach(add_to_page)
   }
-  })
+}else if($(this).attr("id")==="agregar"){
+  $(".formulario").show()
+}else{
+productos[$(this).attr("id")].forEach(add_to_page)
 }
-
-
-}
+})
 
 create_navbar()
 
@@ -179,5 +178,3 @@ $("#inputSearch").on("change keyup",function(event){
     $("#search").click()
 
 })
-
-$("body").mousemove()
