@@ -78,6 +78,7 @@ $(".nav").on("click", ".identi", function(){
   }
 }else if($(this).attr("id")==="agregar"){
   $(".formulario").show()
+  addCategory()
 }else{
 productos[$(this).attr("id")].forEach(add_to_page)
 }
@@ -101,8 +102,9 @@ $("#submit").click(function() {
                 imagen: $("#imagen").val()
             })
 
-            $("<option>" + $("#newone").val() + "</option>").insertBefore("#otro")
+
             $(".input").val("")
+            addCategory()
 
 
         } else {
@@ -178,3 +180,15 @@ $("#inputSearch").on("change keyup",function(event){
     $("#search").click()
 
 })
+
+function addCategory(){
+  $("option:not(#otro)").remove()
+for(key in productos){
+  $("<option>" + capitalize(key) + "</option>").insertBefore("#otro")
+}
+$("#tipo").val($("#tipo option:first-of-type").val()).change()
+}
+
+function capitalize(string){
+  return string[0].toUpperCase()+string.slice(1)
+}
