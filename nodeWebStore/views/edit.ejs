@@ -1,0 +1,12 @@
+<form method="POST" action="/products/<%=product._id%>?_method=PUT">
+  <input type=text name="product[name]" placeholder="Product name" value="<%=product.name%>">
+  <br>
+  <input type=text name="product[image]" placeholder="Image url" value="<%=product.image%>">
+  <br>
+  <input type=number name="product[price]" placeholder="price" value="<%=product.price%>">
+<br>
+  <textarea name=product[description]><%=product.description%></textarea>
+  <br>
+  <label>Stock</label><input type=number name="product[stock]" value="<%=product.stock%>"><br>
+  <input type="submit">
+</form>
