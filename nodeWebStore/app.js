@@ -90,7 +90,7 @@ var express         = require("express"),
         if(err){
           res.render(error)
         }else{
-        res.redirect("/products")  
+        res.redirect("/products")
         }
       })
     })

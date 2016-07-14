@@ -1,0 +1,53 @@
+.content{
+  margin-top: 50px;
+}
+
+.thumbpropio img{
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+.available{
+  color: green;
+  font-weight:bold;
+}
+.out_of_stock{
+  color: red;
+  font-weight:bold;
+}
+.price{
+  font-size: 1.4em;
+  opacity: 0.6;
+}
+
+#delete{
+  display: inline;
+}
+
+#form{
+  width: 400px;
+  margin: 20px auto;
+  border: 1px solid #e7e7e7;
+  background: #f8f8f8;
+  padding: 50px;
+  border-radius: 10px
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#product-show{
+  max-width:900px;
+  margin: 0 auto;
+}
+
+#product-show .thumbnail{
+max-height:300px
+}
+#product-show .thumbnail img{
+  max-height: 300px;
+  width: auto
+}

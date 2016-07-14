@@ -1,11 +1,19 @@
-<div class="product">
-  <h3><%= product.name %></h3>
-    <p><%= product.description %></p>
-  <p><%= product.price %></p>
-  <img src="<%= product.image %>">
-  <p class=<% if(product.available){%>'available'> Available<%}else{%>'out_of_stock'>Out of Stock <% } %></p>
-  <a href="/products/<%=product._id%>/edit">Edit</a>
-  <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
-    <button>Delete</button>
+<% include partials/header %>
+
+
+<div id="product-show">
+    <h3><%= product.name %></h3>
+    <p class=<% if(product.available){%>'available'> Available<%}else{%>'out_of_stock'>Out of Stock <% } %></p>
+    <p class="price"> $<%= product.price %></p>
+  <div class=thumbnail>
+    <img src="<%= product.image %>">
+  </div>
+  <p><%= product.description %></p>
+  <a href="/products/<%=product._id%>/edit" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
+  <form id=delete action="/products/<%=product._id%>?_method=DELETE" method="POST">
+    <button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
   </form>
 </div>
+<div>
+
+<% include partials/footer %>

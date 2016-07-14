@@ -1,16 +1,19 @@
-<h1>Pagina de catalogo</h1>
-
-<a href="/products/new">Add new Product</a>
-
+<% include partials/header %>
 
 <% products.forEach(function(product){ %>
-<div class="product">
+<div class="product col-md-3  col-sm-6">
   <h3><%= product.name %></h3>
-  <p><%= product.price %></p>
-  <img src="<%= product.image %>">
+  <p class="price">$<%= product.price %></p>
+  <div class="thumbnail thumbpropio">
+    <img class=img-responsive src="<%= product.image %>">
+  </div>
   <p class=<% if(product.available){%>'available'> Available<%}else{%>'out_of_stock'>Out of Stock <% } %></p>
   <a href="/products/<%= product._id %>">More Info</a>
 </div>
 
 
+
+
 <% }) %>
+
+<% include partials/footer %>
