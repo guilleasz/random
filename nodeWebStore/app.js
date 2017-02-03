@@ -2,100 +2,59 @@ var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
     methodOverride  = require("method-override"),
-    mongoose        = require("mongoose")
+    mongoose        = require("mongoose"),
+    Product         = require("./models/product.js"),
+    Comment         = require("./models/comment.js"),
+    passport        = require("passport"),
+    localStrategy   = require("passport-local"),
+    User            = require("./models/user"),
+    productRoutes   = require("./routes/product"),
+    commentRoutes   = require("./routes/comment"),
+    indexRoutes     = require("./routes/index"),
+    flash           = require("connect-flash")
 
-    mongoose.connect("mongodb://localhost/web_store")
-    app.set("view engine", "ejs")
-    app.use(express.static("public"))
-    app.use(bodyParser.urlencoded({extended:true}))
-    app.use(methodOverride("_method"))
+  mongoose.connect("mongodb://localhost/web_store")
+  app.set("view engine", "ejs")
+  app.use(express.static("public"))
+  app.use(bodyParser.urlencoded({extended:true}))
+  app.use(methodOverride("_method"))
+  app.use(flash())
 
-    var productSchema = new mongoose.Schema({
-      name: String,
-      price: Number,
-      description: String,
-      stock: Number,
-      image: String,
-      available: Boolean
-    })
+  /*=========================
+      PASSPORT CONFIG
+  =========================*/
 
-    var Product= mongoose.model("Product", productSchema)
+  app.use(require("express-session")({
+    secret:"ksdjflskf sfsdjfdsk fjds fdsñkf jñsflk sñfl skdfjsdfñlkjsf dsafds afsfj",
+    resave: false,
+    saveUninitialized: false
+  }))
 
-    app.get("/", function(req, res){
-      res.redirect("/products")
-    })
+  app.use(passport.initialize())
+  app.use(passport.session())
+  passport.use(new localStrategy(User.authenticate()))
+  passport.serializeUser(User.serializeUser())
+  passport.deserializeUser(User.deserializeUser())
 
-    app.get("/products", function(req, res){
-      Product.find({}, function(err, products){
-        if(err){
-          res.render("error")
-        }else{
-        res.render("index", {products:products})
-      }
-      })
+  app.use(function(req, res, next){
+    res.locals.currentUser=req.user
+    res.locals.success=req.flash("success")
+    res.locals.error=req.flash("error")
+    next()
+  })
 
-    })
+    /*=========================
+              ROUTES
+    =========================*/
+  app.use(require('body-parser').json());
 
-    app.get("/products/new", function(req, res){
-      res.render("new")
-    })
+  app.use(indexRoutes)
+  app.use("/products", productRoutes)
+  app.use("/products/:id/comments", commentRoutes)
 
-    app.post("/products", function(req, res){
-      var product=req.body.product
-      product.available=!!Number(product.stock)
-      Product.create(req.body.product, function(err){
-        if(err){
-          res.render("error")
-        }else{
-          res.redirect("/products")
-        }
-      })
-
-    })
-
-    app.get("/products/:id", function(req, res){
-      Product.findById(req.params.id, function(err, foundProduct){
-        if(err){
-          res.render("error")
-        }else{
-          res.render("show", {product:foundProduct})
-        }
-      })
-    })
-
-    app.get("/products/:id/edit", function(req, res){
-      Product.findById(req.params.id, function(err, foundProduct){
-        if(err){
-          res.render("error")
-        }else{
-          res.render("edit", {product:foundProduct})
-        }
-      })
-    })
-
-    app.put("/products/:id", function(req, res){
-      var product=req.body.product
-      product.available=!!Number(product.stock)
-      Product.findByIdAndUpdate(req.params.id, product, function(err){
-        if(err){
-          res.render("error")
-        }else{
-          res.redirect("/products/"+req.params.id)
-        }
-      })
-    })
-
-    app.delete("/products/:id", function(req, res){
-      Product.findByIdAndRemove(req.params.id, function(err){
-        if(err){
-          res.render(error)
-        }else{
-        res.redirect("/products")
-        }
-      })
-    })
+  app.listen(8000, function(){
+    console.log("funca!")
+})
 
 
-    app.listen(8000, function(){
-      console.log("funca!")
-    })
+module.exports = app

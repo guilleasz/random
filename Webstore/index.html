@@ -1,102 +1,78 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Webstore Hackaton</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-  </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css"> </head>
+
   <body>
     <nav class="navbar navbar-default">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Webstore Hackaton</a>
+          <a class="navbar-brand vertodo identi" href="#"><img src="https://developers.mercadopago.com/images/logo-mp.png" alt="" /> Mercado Santi</a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
-          <ul id=productos-nav class="dropdown-menu">
-
-          </ul>
-        </li>
-          </ul>
+          <ul class="nav navbar-nav"> </ul>
           <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input id=inputSearch type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default" id=search>Submit</button>
-          </form>
+            <div class="form-group"> <input id=inputSearch type="text" class="form-control" placeholder="Search"> </div> <button type="submit" class="btn btn-default" id=search>Submit</button> </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="identi" id=vertodo href="#">Ver Todo</a></li>
-            <li><a href="#" class="identi" id=agregar>Agregar Productos</a></li>
-
+            <li><a class="identi vertodo" href="#">Ver Todo</a></li>
+            <li><a href="#" class="identi" id=agregar><i class="fa fa-camera"></i> Agregar Productos</a></li>
           </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
     </nav>
     <div class="container">
-      <div id=contenido class="row">
-
+      <div class="row">
+        <div class="col-md-3">
+          <div class="categorias"> Categorías
+            <ul id=productos-nav></ul>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div id=contenido class="row"> </div>
+        </div>
       </div>
       <div class="formulario">
-        <p id=alert>No ha completado todos los campos</p>
-        Nuevo producto
-        <p>
-            <select name="Tipo" id=tipo>
+        <p id=alert>No ha completado todos los campos</p> Nuevo producto
+        <div class="form-group"> <select class="form-control" name="Tipo" id=tipo>
                 <optgroup label="Tipo de Producto">
 
                  <option value=otro id=otro>Otro</option>
                 </optgroup>
-            </select>
-            <span id=nuevo>
-                Agregar nuevo tipo de producto: <input class="input" type="text" id="newone" value="-" placeholder="Ej; Libro, LCD, Laptop">
-            </span>
-        </p>
-        <p>
-            Titulo:
-            <input class="input" type=text id=titulo></input>
-        </p>
-        <p>
-            Categoria:
-            <input class="input" type=text id=categoria></input>
-        </p>
-        <p>
-            Precio:
-            <input class="input" type=text id=precio></input>
-        </p>
-        <p>
-            Puntos de venta(Dividir por comas Ej: Yenny, Amazon, Musimundo):
-            <input class="input" type=text id=puntos></input>
-        </p>
-        <p>
-            Imagen url:
-            <input class="input" type=text id=imagen></input>
-        </p>
-        <button id="submit">Publicar!</button>
-    </form>
-  </div>
-
-
+            </select> <span id=nuevo>
+                Agregar nuevo tipo de producto: <input class="input form-control" type="text" id="newone" value="-" placeholder="Ej; Libro, LCD, Laptop">
+            </span> </div>
+        <div class="form-group"> Titulo: <input class="input form-control" type=text id=titulo></input>
+        </div>
+        <div class="form-group"> Categoria: <input class="input form-control" type=text id=categoria></input>
+        </div>
+        <div class="form-group"> Precio: <input class="input form-control" type=text id=precio></input>
+        </div>
+        <div class="form-group"> Puntos de venta(Dividir por comas Ej: Yenny, Amazon, Musimundo): <input class="input" type=text id=puntos></input>
+        </div>
+        <div class="form-group"> Imagen url: <input class="input form-control" type=text id=imagen></input>
+          </p> <button id="submit">Publicar!</button> </form>
+        </div>
       </div>
     </div>
-
-    <nav id=footer class="footer absolute">
-        ©Plataforma5 2016
-    </footer>
-
-<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src=script.js></script>
+    <footer id=footer class="footer absolute"> ©Plataforma5 2016 </footer>
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src=script.js></script>
   </body>
+
 </html>

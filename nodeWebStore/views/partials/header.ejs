@@ -24,8 +24,27 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/products/new">Add New Product</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if(!currentUser){ %>
+              <li><a href="/register">Sign Up</a></li>
+              <li><a href="/login">Log in</a></li>
+            <% }else{ %>
+              <li><a href="/user/<%=currentUser%>"><%= currentUser.username %></a></li>
+              <li><a href="/logout">Log out</a></li>
+            <% } %>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
     <div class="container content">
       <div class="row">
+        <% if(success && success.length>0){ %>
+        <div class="alert alert-success">
+          <%= success %>
+        </div>
+        <% } %>
+          <% if(error && error.length>0){ %>
+        <div class="alert alert-danger">
+          <%= error %>
+        </div>
+        <%}%>
